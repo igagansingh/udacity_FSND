@@ -20,4 +20,7 @@ godfather = media.Movie("The Godfather",
 #godfather.show_trailer()
 
 movies = [toy_story, avatar, godfather]
-fresh_tomatoes.open_movies_page(movies)
+#fresh_tomatoes.open_movies_page(movies)
+#print(media.Movie.VALID_RATINGS)
+
+print(media.Movie.__module__)
