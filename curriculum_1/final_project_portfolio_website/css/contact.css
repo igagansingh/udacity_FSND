@@ -1,0 +1,19 @@
+.right {
+	float: right;
+	width: 75%;
+	height: 100%;
+}
+header h1 {
+	padding: 0 16px;
+	letter-spacing: 4px;
+	font-size: 40px;
+	margin: 16px;
+	color: #141414;
+}
+hr {
+	border-color: #009999;
+	border-width: 1px;
+}
+address {
+	margin: 32px;
+}
