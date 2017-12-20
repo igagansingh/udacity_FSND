@@ -1,10 +1,17 @@
 # Logs Analysis
 
-Python file that answers few questions about a news database. Database here is a PostgreSQL, it consist of 3 tables.
-	Articles - Contains information about a article and who has written it (ID of author).
+Python file that answers few questions about a news database. Database here is a PostgreSQL, it consist of 3 tables:
+    
+    Articles - Contains information about a article and who has written it (ID of author).
 	Authors	 - Contains information about a author, each author has an ID(unique).
 	Log 	 - Contains a log of requests made to this website (and articles), request status and other details.
 
+The question domain for now consist of three questions:
+    
+    1. What are the most popular three articles of all time?
+    2. Who are the most popular article authors of all time?
+    3. On which days did more than 1% of requests lead to errors?
+    
 ## Requirements
 
 This project uses Linux-based virtual machine 
@@ -20,7 +27,9 @@ This project uses Linux-based virtual machine
 	> vagrant up (This will cause Vagrant to download the Linux operating system and install it.)
 	> vagrant ssh (To log in to your newly installed Linux VM)
 
-3. You need to create two views for the file to run successfully
+3. Unzip the news database file downloaded. You need to create two views for the file to run successfully, run the following command and set the views given after that.
+    
+        psql -d news
 	
 	##### popularity (used in query1 and query2)
 
