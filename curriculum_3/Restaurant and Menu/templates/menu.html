@@ -4,19 +4,19 @@
 	<title>Menu Items</title>
 </head>
 <body>
-	<h2>Menu Items</h2>
+	<h2>{{restaurant.name}}</h2>
 	{% if not items %}
 		<strong> You currently have no menu items. </strong><br>
 	{% endif %}
-	<a href="#"> Create new menu item!</a>
+	<a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}"> Create new menu item!</a>
 	<hr>
 	{% for item in items %}
-	<p>{{item.name}}</p>
+	<h3>{{item.name}}</h3>
 	<p>{{item.description}}</p>
 	<p>{{item.price}}</p>
 	<p>{{item.course}}</p>
-	<p><a href="#">Edit Restaurant</a></p>
-	<p><a href="#">Delete Restaurant</a></p>
+	<p><a href="{{url_for('editMenuItem',restaurant_id=restaurant.id, menu_id=item.id)}}">Edit Item</a></p>
+	<p><a href="{{url_for('deleteMenuItem',restaurant_id=restaurant.id, menu_id=item.id)}}">Delete Item</a></p>
 	{% endfor %}
 </body>
 </html>
