@@ -4,10 +4,13 @@
 	<title>Restaurants</title>
 </head>
 <body>
-	<h2>Restaurants in Restaurant Menu</h2>
+	<h2>Restaurants</h2>
+	<a href="#"> Create new restaurant!</a>
 	<hr>
 	{% for restaurant in restaurants %}
 	<p>{{restaurant.name}}</p>
+	<p><a href="#">Edit Restaurant</a></p>
+	<p><a href="#">Delete Restaurant</a></p>
 	{% endfor %}
 </body>
 </html>
