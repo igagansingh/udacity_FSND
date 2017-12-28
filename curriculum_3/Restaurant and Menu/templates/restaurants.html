@@ -2,15 +2,30 @@
 <html>
 <head>
 	<title>Restaurants</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h2>Restaurants</h2>
-	<a href="{{url_for('newRestaurant')}}"> Create new restaurant!</a>
-	<hr>
-	{% for restaurant in restaurants %}
-	<h3><a href="{{url_for('restaurantMenu', restaurant_id=restaurant.id)}}">{{restaurant.name}}</a></h3>
-	<p><a href="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}">Edit Restaurant</a></p>
-	<p><a href="{{url_for('deleteRestaurant', restaurant_id=restaurant.id)}}">Delete Restaurant</a></p>
-	{% endfor %}
+	<div class="container" style="background-color: #eee;">
+		<div class="row" style="background-color: #3b5998; color: #fff; padding: 16px; border-radius: 0 0 20px 20px;">
+			<h2>Restaurants</h2>
+			<a href="{{url_for('newRestaurant')}}" class="btn btn-default"> New Restaurant ?</a>
+		</div>
+		<div class="row" style="padding: 0 0 16px 0;">
+			{% for restaurant in restaurants %}
+			<div class="col-md-4">
+				<h3><a href="{{url_for('restaurantMenu', restaurant_id=restaurant.id)}}" >{{restaurant.name}}</a></h3>
+				<a href="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}" class="btn btn-primary">Edit</a>
+				<a href="{{url_for('deleteRestaurant', restaurant_id=restaurant.id)}}" class="btn btn-primary">Delete</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
 </body>
 </html>
