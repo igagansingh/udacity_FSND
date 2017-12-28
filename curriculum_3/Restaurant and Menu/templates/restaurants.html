@@ -1,31 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Restaurants</title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div class="container" style="background-color: #eee;">
-		<div class="row" style="background-color: #3b5998; color: #fff; padding: 16px; border-radius: 0 0 20px 20px;">
-			<h2>Restaurants</h2>
-			<a href="{{url_for('newRestaurant')}}" class="btn btn-default"> New Restaurant ?</a>
-		</div>
-		<div class="row" style="padding: 0 0 16px 0;">
-			{% for restaurant in restaurants %}
-			<div class="col-md-4">
-				<h3><a href="{{url_for('restaurantMenu', restaurant_id=restaurant.id)}}" >{{restaurant.name}}</a></h3>
-				<a href="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}" class="btn btn-primary">Edit</a>
-				<a href="{{url_for('deleteRestaurant', restaurant_id=restaurant.id)}}" class="btn btn-primary">Delete</a>
-			</div>
-			{% endfor %}
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right">
+					</div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Restaurants</h1>
 		</div>
 	</div>
-</body>
-</html>
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+	
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 padding-none">
+			<a href="{{url_for('newRestaurant')}}">
+				<button class="btn btn-default" id="new-restaurant">
+					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Restaurant
+				</button>
+			</a>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	{% for restaurant in restaurants %}
+		<a href = "{{url_for('restaurantMenu', restaurant_id = restaurant.id)}}">
+			<div class="row">
+				<div class="col-md-1"></div>
+					<div class="col-md-10 restaurant-list">
+						<h3>{{restaurant.name}}</h3>
+					</div>
+				<div class="col-md-1"></div>
+			</div>
+		</a>
+	{% endfor %}
+{% endblock %}
