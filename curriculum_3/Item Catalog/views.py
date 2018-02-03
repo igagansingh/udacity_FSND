@@ -172,7 +172,6 @@ def gconnect():
 
 # Logout if logged in through google
 @app.route('/gdisconnect')
-@auth.login_required
 def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
@@ -336,7 +335,7 @@ def index():
 
 
 # List of items of a particular category
-@app.route('/catalog/<category>/items')
+@app.route('/catalog/<string:category>/items')
 def category_items(category):
     categories = session.query(Categories).filter_by().all()
     query_category = session.query(Categories).filter_by(name=category).one()
@@ -349,7 +348,7 @@ def category_items(category):
 
 
 # Detail about a particular item
-@app.route('/catalog/<int:category>/<item>')
+@app.route('/catalog/<int:category>/<string:item>')
 def item(category, item):
     item = session.query(CategoryItem).filter_by(name=item).one()
     category = session.query(Categories).filter_by(id=item.category_id).one()
@@ -396,26 +395,17 @@ def newItem():
 
 
 # Editing existing item
-@app.route('/catalog/<int:category>/<item>/edit', methods=['GET', 'POST'])
-def editItem(category, item):
+@app.route('/catalog/<int:item_id>/edit', methods=['GET', 'POST'])
+def editItem(item_id):
     if 'username' not in login_session:
         return redirect('/login')
-    item = session.query(CategoryItem).filter_by(name=item).one()
-    if login_session['user_id'] != item.user_id:
+    editedItem = session.query(CategoryItem).filter_by(id=item_id).one()
+    if login_session['user_id'] != editedItem.user_id:
         return ("<script>function myFunction() {alert("
                 "'You are not authorized to edit menu items to this restaurant"
                 ".Please create your own restaurant in order to add items.');}"
                 "</script><body onload='myFunction()''>")
     if request.method == 'POST':
-
-        category = (session.query(Categories).
-                    filter_by(name=request.form['vl']).one())
-
-        user = session.query(User).filter_by(id=login_session['user_id']).one()
-
-        editedItem = (session.query(CategoryItem).
-                      filter_by(name=request.form['name']).one())
-
         if request.form['name'] != editedItem.name:
             editedItem.name = request.form['name']
         if request.form['description'] != editedItem.description:
@@ -429,16 +419,18 @@ def editItem(category, item):
 
     else:
         category = (session.query(Categories).
-                    filter_by(id=item.category_id).one())
-        return render_template('editItem.html', item=item, category=category)
+                    filter_by(id=editedItem.category_id).one())
+        return render_template('editItem.html',
+                               category=category,
+                               item=editedItem)
 
 
 # Deleting existing item
-@app.route('/catalog/<int:category>/<item>/delete', methods=['GET', 'POST'])
-def deleteItem(category, item):
+@app.route('/catalog/<int:item_id>/delete', methods=['GET', 'POST'])
+def deleteItem(item_id):
     if 'username' not in login_session:
         return redirect('/login')
-    item = session.query(CategoryItem).filter_by(name=item).one()
+    item = session.query(CategoryItem).filter_by(id=item_id).one()
     if login_session['user_id'] != item.user_id:
         return ("<script>function myFunction() {"
                 "alert('You are not authorized to delete menu items to this "
@@ -450,7 +442,7 @@ def deleteItem(category, item):
         flash('Item Successfully Deleted')
         return redirect(url_for('index'))
     else:
-        return render_template('deleteItem.html', category=category, item=item)
+        return render_template('deleteItem.html', item=item)
 
 
 # Making a new user from registration form
@@ -488,11 +480,11 @@ def existing_users():
             abort(400)
         user = session.query(User).filter_by(email=email).first()
         if user is not None:
-            login_session['username'] = user.username
-            login_session['email'] = user.email
-            login_session['provider'] = 'local'
-            login_session['user_id'] = user.id
             if user.verify_password(password):
+                login_session['username'] = user.username
+                login_session['email'] = user.email
+                login_session['provider'] = 'local'
+                login_session['user_id'] = user.id
                 flash("User logged in: %s" % user.username)
                 return redirect(url_for('index'))
             else:

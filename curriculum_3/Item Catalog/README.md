@@ -36,11 +36,11 @@ Features successfully implemented:
     3. CRUD: CREATE (http://localhost:5000/catalog/new)
 ![image](https://user-images.githubusercontent.com/13224901/35765760-a6745b42-08f0-11e8-87ef-39ea19e2b28e.png)
 
-    4. CRUD: UPDATE (http://localhost:5000/catalog/ID/NAME/edit)
-![image](https://user-images.githubusercontent.com/13224901/35765762-aec7a038-08f0-11e8-90ee-9059360d3051.png)
+    4. CRUD: UPDATE (http://localhost:5000/catalog/ID/edit)
+![image](https://user-images.githubusercontent.com/13224901/35768117-22759586-091d-11e8-810d-7ff879f843b4.png)
 
-    5. CRUD: DELETE (http://localhost:5000/catalog/ID/NAME/delete)
-![image](https://user-images.githubusercontent.com/13224901/35765765-b3742fd4-08f0-11e8-8c7b-281b7ab62bba.png)
+    5. CRUD: DELETE (http://localhost:5000/catalog/ID/delete)
+![image](https://user-images.githubusercontent.com/13224901/35768132-47561e3e-091d-11e8-8246-eff5dc72e9ea.png)
 
     6. Authorization and Authentication (http://localhost:5000/login)
 ![image](https://user-images.githubusercontent.com/13224901/35765738-3bd51f56-08f0-11e8-905d-6af59657c90f.png)

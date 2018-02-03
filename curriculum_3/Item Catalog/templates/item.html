@@ -13,8 +13,8 @@
           <h5>{{item.price}}</h5>
           <p class="card-text"><i>Description: </i>{{item.description}}</p>
           <div>
-            <a href='{{url_for('editItem', category = category.id, item=item.name ) }}'>Edit</a> | 
-            <a href='{{url_for('deleteItem', category = category.id, item=item.name ) }}'>Delete</a>
+            <a href='{{url_for('editItem', item_id=item.id ) }}'>Edit</a> | 
+            <a href='{{url_for('deleteItem', item_id=item.id ) }}'>Delete</a>
           </div>
         </div>
         <div class="card-footer text-right">

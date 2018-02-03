@@ -38,8 +38,8 @@
               <p class="card-text">{{item.description}}</p>
               {% if user.id == item.user_id %}
               <div>
-                <a href='{{url_for('editItem', category = item.category_id, item=item.name ) }}'>Edit</a> | 
-                <a href='{{url_for('deleteItem', category = item.category_id, item=item.name ) }}'>Delete</a>
+                <a href="{{url_for('editItem', item_id=item.id)}}">Edit</a> | 
+                <a href="{{url_for('deleteItem', item_id=item.id)}}">Delete</a>
               </div>
               {% endif %}
             </div>
