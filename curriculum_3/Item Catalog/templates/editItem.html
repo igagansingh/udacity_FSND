@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container">
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1">
+			<h1>Edit {{ item.name }}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1">
+			<form action="{{url_for('editItem', category=item.category_id, item=item.name)}}" method = "post">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type ="text" maxlength="50" class="form-control" name="name" value="{{item.name}}">
+
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description">{{ item.description }}</textarea>
+
+					<label for="price">Price:</label>
+					<div class="input-group">
+						<div class="input-group-addon">$</div>
+						<input type ="text" class="form-control" maxlength="10" name="price" value="{{ item.price }}">
+					</div>
+					<label for="category">Category :</label>
+					<div class="btn-group">
+						<input type="hidden" id="vl" name="vl" value="{{category.name}}">
+						<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						 	<li class="dropdown-item"><a class="dropdown-item" href="#">Soccer</a></li>
+							<li class="dropdown-item"><a class="dropdown-item" href="#">Basketball</a></li>
+							<li class="dropdown-item"><a class="dropdown-item" href="#">Baseball</a></li>
+							<li class="dropdown-item"><a class="dropdown-item" href="#">Hockey</a></li>
+							<li class="dropdown-item"><a class="dropdown-item" href="#">Snowboarding</a></li>
+							<li class="dropdown-item"><a class="dropdown-item" href="#">Rock Climbing</a></li>
+						</ul>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-light" id="submit" type="submit"> Edit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(".dropdown-menu li a").click(function(){
+	  var selText = $(this).text();
+	  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+	  $('#vl').attr('value',selText);
+	});
+</script>
+{% endblock %}
+

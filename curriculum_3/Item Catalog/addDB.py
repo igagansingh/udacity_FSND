@@ -31,8 +31,10 @@ category1 = Categories(user_id=1, name="Soccer")
 session.add(category1)
 session.commit()
 
-category1_item1 = CategoryItem(name="Balls", 
-       description="A football is a ball inflated with air that is used to play one of the various sports known as football.", 
+category1_item1 = CategoryItem(
+       name="Balls",
+       description="A football is a ball inflated with air that is used to "
+       "play one of the various sports known as football.",
        price="$9.99",
        category_id=1,
        categories=category1,
@@ -42,8 +44,10 @@ category1_item1 = CategoryItem(name="Balls",
 session.add(category1_item1)
 session.commit()
 
-category1_item2 = CategoryItem(name="Gloves", 
-       description=" Goalkeepers wear gloves to protect their hands and enhance their grip of the ball.",
+category1_item2 = CategoryItem(
+       name="Gloves",
+       description=" Goalkeepers wear gloves to protect their hands and "
+       "enhance their grip of the ball.",
        price="$4.99",
        category_id=1,
        categories=category1,
@@ -60,8 +64,11 @@ category2 = Categories(user_id=1, name="Basketball")
 session.add(category2)
 session.commit()
 
-category2_item1 = CategoryItem(name="Air Jordan", 
-       description="Air Jordan is a brand of basketball footwear and athletic clothing produced by Nike. It was created for former professional basketball player, Michael Jordan.", 
+category2_item1 = CategoryItem(
+       name="Air Jordan",
+       description="Air Jordan is a brand of basketball footwear and "
+       "athletic clothing produced by Nike. It was created for "
+       "former professional basketball player, Michael Jordan.",
        price="$499.99",
        category_id=2,
        categories=category2,
@@ -71,8 +78,10 @@ category2_item1 = CategoryItem(name="Air Jordan",
 session.add(category2_item1)
 session.commit()
 
-category2_item2 = CategoryItem(name="Backboard", 
-       description="A backboard is a piece of basketball equipment. It is a raised vertical board with a basket attached.", 
+category2_item2 = CategoryItem(
+       name="Backboard",
+       description="A backboard is a piece of basketball equipment. "
+       "It is a raised vertical board with a basket attached.",
        price="$19.99",
        category_id=2,
        categories=category2,
@@ -89,8 +98,11 @@ category3 = Categories(user_id=1, name="Baseball")
 session.add(category3)
 session.commit()
 
-category3_item1 = CategoryItem(name="Bat", 
-       description="A baseball bat is a smooth wooden or metal club used in the sport of baseball to hit the ball after it is thrown by the pitcher.", 
+category3_item1 = CategoryItem(
+       name="Bat",
+       description="A baseball bat is a smooth wooden or metal club used "
+       "in the sport of baseball to hit the ball after it is thrown "
+       "by the pitcher.",
        price="$9.99",
        category_id=3,
        categories=category3,
@@ -107,8 +119,10 @@ category4 = Categories(user_id=1, name="Hockey")
 session.add(category4)
 session.commit()
 
-category4_item1 = CategoryItem(name="Stick", 
-       description="A hockey stick is a piece of equipment used by the players in most forms of hockey to move the ball or puck.", 
+category4_item1 = CategoryItem(
+       name="Stick",
+       description="A hockey stick is a piece of equipment used by the "
+       "players in most forms of hockey to move the ball or puck.",
        price="$14.99",
        category_id=4,
        categories=category4,
@@ -131,8 +145,10 @@ category5 = Categories(user_id=2, name="Snowboarding")
 session.add(category5)
 session.commit()
 
-category5_item1 = CategoryItem(name="Snowboard", 
-       description="A snowboard is a flat board with bindings that hold your feet in place while gliding down the mountain.", 
+category5_item1 = CategoryItem(
+       name="Snowboard",
+       description="A snowboard is a flat board with bindings that hold "
+       "your feet in place while gliding down the mountain.",
        price="$9.99",
        category_id=5,
        categories=category5,
@@ -142,8 +158,10 @@ category5_item1 = CategoryItem(name="Snowboard",
 session.add(category5_item1)
 session.commit()
 
-category5_item2 = CategoryItem(name="Goggles", 
-       description="Snow goggles are a type of eyewear traditionally used to prevent snow blindness.", 
+category5_item2 = CategoryItem(
+       name="Goggles",
+       description="Snow goggles are a type of eyewear traditionally used "
+       "to prevent snow blindness.",
        price="$14.99",
        category_id=5,
        categories=category5,
@@ -159,8 +177,10 @@ category6 = Categories(user_id=2, name="Rock Climbing")
 session.add(category6)
 session.commit()
 
-category6_item1 = CategoryItem(name="Harness", 
-       description="A climbing harness is an item of climbing equipment for rock-climbing requiring the use of ropes to provide access or safety.", 
+category6_item1 = CategoryItem(
+       name="Harness",
+       description="A climbing harness is an item of climbing equipment for "
+       "rock-climbing requiring the use of ropes to provide access or safety.",
        price="$24.99",
        category_id=6,
        categories=category6,
@@ -170,8 +190,11 @@ category6_item1 = CategoryItem(name="Harness",
 session.add(category6_item1)
 session.commit()
 
-category6_item2 = CategoryItem(name="Quickdraw", 
-       description="Quickdraw is a piece of climbing equipment used by rock climbers to allow the climbing rope to run freely through bolt anchors or other protection while leading.", 
+category6_item2 = CategoryItem(
+       name="Quickdraw",
+       description="Quickdraw is a piece of climbing equipment used by rock "
+       "climbers to allow the climbing rope to run freely through bolt "
+       "anchors or other protection while leading.",
        price="$4.99",
        category_id=6,
        categories=category6,

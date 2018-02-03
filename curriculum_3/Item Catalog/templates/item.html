@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<!-- Page Content -->
+<div class="container">
+  <div class="row" style="margin-top: 16px;">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h4 class="card-title">
+            {{item.name}}
+          </h4>
+          <h5>{{item.price}}</h5>
+          <p class="card-text"><i>Description: </i>{{item.description}}</p>
+          <div>
+            <a href='{{url_for('editItem', category = category.id, item=item.name ) }}'>Edit</a> | 
+            <a href='{{url_for('deleteItem', category = category.id, item=item.name ) }}'>Delete</a>
+          </div>
+        </div>
+        <div class="card-footer text-right">
+        	<small class="text-muted"><i>Category: </i>{{ category.name }}</small> |
+        	<small class="text-muted"><i>Added by: </i>{{ user.username }}</small>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.row -->
+</div><!-- /.container -->
+{% endblock %}
