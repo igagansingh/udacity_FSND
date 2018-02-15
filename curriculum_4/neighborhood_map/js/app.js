@@ -95,7 +95,7 @@ function ListViewModel() {
 				var string = locationItem.name.toLowerCase();
                     var result;
                     if (string.search(filter) >= 0) {
-                         locationItem.marker.setVisible(true)
+                         locationItem.marker.setVisible(true);
                          result = (string.search(filter) >= 0);
                     } else {
                          locationItem.marker.setVisible(false);
@@ -108,8 +108,14 @@ function ListViewModel() {
      // Function which opens the marker's infoWindow when an item from the list is clicked
      this.openMarker = function () {
           self.populateInfoWindow(this.marker, self.largeInfoWindow);
-     }
-
+     };
+     this.addOnMarker = function () {
+          self.populateInfoWindow(this, self.largeInfoWindow);
+          this.setAnimation(google.maps.Animation.BOUNCE);
+          setTimeout((function() {
+               this.setAnimation(null);
+          }).bind(this), 1000);
+     };
      // This function opens up the infoWindow, it is called from two points
      //   1. When the ListItem is clicked
      //   2. When the marker is clicked
@@ -132,14 +138,14 @@ function ListViewModel() {
                          }
                     }
                content = '<div><h2>'+ place.name +'</h2>';
-               if(place.phone!="")
-                    content+='<p> <b>Phone number : </b>' + place.phone  + '</p>'
-               if(place.rating!="")
-                    content+='<p> <b>Rating : </b>' + place.rating  + '</p>'
-               if(place.url!="")
-                    content+='<p> <b>Website : </b><a href="' + place.url  + '">'+ place.url +'</a></p>'
-               if(f_address!="")
-                    content+='<p> <b>Address : </b>' + f_address  + '</p>'
+               if(place.phone!=="")
+                    content+='<p> <b>Phone number : </b>' + place.phone  + '</p>';
+               if(place.rating!=="")
+                    content+='<p> <b>Rating : </b>' + place.rating  + '</p>';
+               if(place.url!=="")
+                    content+='<p> <b>Website : </b><a href="' + place.url  + '">'+ place.url +'</a></p>';
+               if(f_address!=="")
+                    content+='<p> <b>Address : </b>' + f_address  + '</p>';
                content+='</div>';
                infowindow.setContent(content);
                infowindow.open(map, marker);
@@ -151,7 +157,7 @@ function ListViewModel() {
                infowindow.close();
                infowindow.marker = null;
           }
-     }
+     };
 
      this.initMap = function () {
 
@@ -174,11 +180,11 @@ function ListViewModel() {
                // marker images
                var image;
                if(self.information()[i].category == "coffee")
-                    image = 'img/coffee-map.png'
+                    image = 'img/coffee-map.png';
                if(self.information()[i].category == "food")
-                    image = 'img/location.png'
+                    image = 'img/location.png';
                if(self.information()[i].category == "religion")
-                    image = 'img/placeholder.png'
+                    image = 'img/placeholder.png';
 
                this.marker = new google.maps.Marker({
                     map: map,
@@ -193,17 +199,11 @@ function ListViewModel() {
 
                self.information()[i].marker = this.marker;
 
-               this.marker.addListener('click', function () {
-                    self.populateInfoWindow(this, self.largeInfoWindow);
-                    this.setAnimation(google.maps.Animation.BOUNCE);
-                    setTimeout((function() {
-                         this.setAnimation(null);
-                    }).bind(this), 1000);
-               });
+               this.marker.addListener('click', self.addOnMarker);
           }
-     }
+     };
 }
 
 onError = function onError() {
     alert('Oops. Google Maps did not load. Please refresh the page and try again!');
-}
+};
