@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gagandeep Singh - Neighborhood Map</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+<body>
+     <div id="container">
+          <aside id="list">
+               <header>
+                    <button id="ham" onclick="myFunction(this)">
+                         <div class="bar1"></div>
+                         <div class="bar2"></div>
+                         <div class="bar3"></div>
+                    </button>
+                    <h2 id="name_id">Neighborhood Map</h2>
+               </header>
+               <div class="filter search" id="filter_id">
+                    <span class="fa fa-search" id="search_id"></span>
+                    <input id="filter" type="text" class="filter_input" placeholder="Search" data-bind="textInput: searchTerm, valueUpdate: 'afterkeydown'">
+               </div>
+               <div id="items">
+                    <ul class="item_list" data-bind="foreach: filteredList">
+                         <li class="item" data-bind="click: $parent.openMarker">
+                              <h3 class="name" data-bind="text: name"></h3>
+                              <p class="summary" data-bind="text: address"></p>
+                         </li>
+                    </ul>
+               </div>
+          </aside>
+          <aside id="map">
+          </aside>
+     </div>
+     <script src="js/custom.js"></script>
+     <script src="js/map.js"></script>
+     <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDJkXL_Z5vcphn62WwxAvXeT-vqM9cDYqE&callback=startApp" onerror="onError"></script>
+     <script src="js/lib/knockout-3.2.0.js"></script>
+     <script src="js/style.js"></script>
+     <script src="js/app.js"></script>
+</body>
+</html>
