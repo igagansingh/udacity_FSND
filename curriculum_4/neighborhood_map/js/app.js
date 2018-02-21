@@ -79,6 +79,37 @@ function ListViewModel() {
 
      this.largeInfoWindow;
 
+     this.responsive = ko.observable(false);
+
+     this.setResponsiveness = function () {
+          document.getElementById('ham').classList.toggle("change");
+
+          if(this.responsive()) {
+               document.getElementById('filter_id').style.width = "100%";
+               document.getElementById('items').style.width = "100%";
+               if(screen.width >= 320 && screen.width < 425)
+                    document.getElementById('list').style.width = "46%";
+               else if(screen.width >= 425 && screen.width < 1024)
+                    document.getElementById('list').style.width = "28%";
+               else if(screen.width >=1024)
+                    document.getElementById('list').style.width = "16%";
+               document.getElementById('map').style.width = "100%";
+               $('#name_id').html("Neighborhood Map");
+               $('#search_id').show();
+               this.responsive(false);
+          }
+
+          else {
+               document.getElementById('filter_id').style.width = "0px";
+               document.getElementById('items').style.width = "0px";
+               document.getElementById('list').style.width = "0px";
+               document.getElementById('map').style.width = "100%";
+               $('#name_id').html("");
+               $('#search_id').hide();
+               this.responsive(true);
+          }
+     };
+
      // The filter function which has 2 features
      //   1. Filter the List as displayed
      //   2. Enable/Disable marker points on map
@@ -108,14 +139,19 @@ function ListViewModel() {
      // Function which opens the marker's infoWindow when an item from the list is clicked
      this.openMarker = function () {
           self.populateInfoWindow(this.marker, self.largeInfoWindow);
+          this.marker.setAnimation(google.maps.Animation.BOUNCE);
+          setTimeout((function() {
+               this.marker.setAnimation(null);
+          }).bind(this), 1400);
      };
      this.addOnMarker = function () {
           self.populateInfoWindow(this, self.largeInfoWindow);
           this.setAnimation(google.maps.Animation.BOUNCE);
           setTimeout((function() {
                this.setAnimation(null);
-          }).bind(this), 1000);
+          }).bind(this), 1400);
      };
+
      // This function opens up the infoWindow, it is called from two points
      //   1. When the ListItem is clicked
      //   2. When the marker is clicked
