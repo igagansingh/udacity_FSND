@@ -27,36 +27,25 @@ function callAPI(url, section) {
           for (var i = 0; i < items.length; i++) {
                object = {};
                object.name = items[i].venue.name;
+
                object.category = section;
+
                object.location = [{}];
+
                object.location[0].lat = items[i].venue.location.lat;
+
                object.location[0].lng = items[i].venue.location.lng;
 
-               if(items[i].venue.contact.phone){
-                    object.phone = items[i].venue.contact.phone;
-               } else {
-                    object.phone = "";
-               }
-               if(items[i].venue.location.address){
-                    object.address = items[i].venue.location.address;
-               } else {
-                    object.address = "";
-               }
-               if(items[i].venue.location.formattedAddress){
-                    object.formattedAddress = items[i].venue.location.formattedAddress;
-               } else {
-                    object.formattedAddress = "";
-               }
-               if(items[i].venue.url){
-                    object.url = items[i].venue.url;
-               } else {
-                    object.url = "";
-               }
-               if(items[i].venue.rating){
-                    object.rating = items[i].venue.rating;
-               } else {
-                    object.rating = "";
-               }
+               object.phone = items[i].venue.contact.phone || "";
+
+               object.address = items[i].venue.location.address || "";
+
+               object.formattedAddress = items[i].venue.location.formattedAddress || "";
+
+               object.url = items[i].venue.url || "";
+
+               object.rating = items[i].venue.rating || "";
+
                RESTAURANTS_DATA.push(object);
           }
      }).done(function(){
@@ -201,7 +190,12 @@ function ListViewModel() {
           map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 28.574812, lng: 77.199129},
                     zoom: 13,
-                    styles : MAP_STYLE
+                    styles : MAP_STYLE,
+                    mapTypeControl: true,
+                    mapTypeControlOptions: {
+                         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                         position: google.maps.ControlPosition.RIGHT_CENTER
+                    }
                });
 
           self.largeInfoWindow = new google.maps.InfoWindow();
